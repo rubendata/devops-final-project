@@ -13,3 +13,8 @@ npm ci
 npx jest --init
 npm run lint -- --fix 
 - (rerun lint as often as required)
+
+manually add __test__ folder under src and add example.test.js
+test('simple test', () => {
+  expect(1 + 1).toBe(2);
+});
