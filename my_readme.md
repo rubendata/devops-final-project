@@ -9,5 +9,6 @@ nvm use
 nvm install 18.14
 npm ci
 
-npm run lint -- --fix
+
 npx jest --init
+npm run lint -- --fix
