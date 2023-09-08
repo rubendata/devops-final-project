@@ -11,4 +11,5 @@ npm ci
 
 
 npx jest --init
-npm run lint -- --fix
+npm run lint -- --fix 
+- (rerun lint as often as required)
