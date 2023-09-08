@@ -14,7 +14,30 @@ npx jest --init
 npm run lint -- --fix 
 - (rerun lint as often as required)
 
-manually add __test__ folder under src and add example.test.js
+### adding missing files to the repo
+## add tests 
+manually add __test__ folder under src and 
+
+add example.test.js
 test('simple test', () => {
   expect(1 + 1).toBe(2);
 });
+
+add example.test.js
+test('simple test', () => {
+  expect(1 + 1).toBe(2);
+});
+
+add App.test.js
+test('simple test', () => {
+  expect(1 + 1).toBe(2);
+});
+
+add MovieList.test.js
+test('simple test', () => {
+  expect(1 + 1).toBe(2);
+});
+
+add components folder under src
+add blank MovieDetails.js
+add blank MovieList.js
