@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # - name: Setup Python
       #   uses: actions/setup-python@v2
@@ -27,17 +27,17 @@ jobs:
       #   run: pipenv install
       #   working-directory: ./starter/backend
 
-      - name: Install dependencies
-        uses: VaultVulp/action-pipenv@v2.0.1
+      - name: Install Python, pipenv and Pipfile packages
+        uses: palewire/install-python-pipenv-pipfile@v3
         with:
-          command: install -d # Install all dependencies, including development ones
+          python-version: 3.9
         
       # - name: Run lint
       #   run: pipenv run lint
       #   working-directory: ./starter/backend
 
       - name: Run lint
-        run: run lint
+        run: pipenv run lint
         working-directory: ./starter/backend
 
   # test-backend:
