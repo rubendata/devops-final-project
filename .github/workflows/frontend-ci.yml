@@ -127,7 +127,7 @@ jobs:
         working-directory: ./setup
 
       - name: Set Docker image in Kustomize
-        run: kustomize edit set image frontend=338209332218.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
+        run: kustomize edit set image frontend=$REGISTRY/$REPOSITORY:$IMAGE_TAG
         working-directory: ./starter/frontend/k8s
 
       - name: Apply Kubernetes resources
