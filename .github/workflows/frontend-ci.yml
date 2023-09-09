@@ -63,27 +63,6 @@ jobs:
         run: npm install
         working-directory: ./starter/frontend
 
-      - name: Build application
-        run: docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag=mp-frontend:latest .
-        working-directory: ./starter/frontend
-
-      - name: Cache Docker image
-        uses: actions/cache@v2
-        with:
-          path: ~/docker-cache
-          key: docker-${{ github.sha }}-frontend
-          restore-keys: |
-            docker-${{ github.sha }}-
-
-  push-ecr:
-    name: Push ECR
-    runs-on: ubuntu-latest
-    needs: [build]
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
@@ -103,13 +82,22 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: mp-frontend
           IMAGE_TAG: latest
+
         run: |
           echo "Registry: $REGISTRY"
           echo "Repository: $REPOSITORY"
           echo "Image Tag: $IMAGE_TAG"
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 .
           docker images
-          docker tag $REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:$IMAGE_TAG
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
+        working-directory: ./starter/frontend
 
+      - name: Cache Docker image
+        uses: actions/cache@v2
+        with:
+          path: ~/docker-cache
+          key: docker-${{ github.sha }}-frontend
+          restore-keys: |
+            docker-${{ github.sha }}-
 
