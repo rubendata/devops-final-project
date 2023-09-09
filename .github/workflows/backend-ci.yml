@@ -18,17 +18,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9 # Adjust to your desired Python version
+      # - name: Setup Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: 3.9 # Adjust to your desired Python version
+
+      # - name: Install dependencies
+      #   run: pipenv install
+      #   working-directory: ./starter/backend
 
       - name: Install dependencies
-        run: pipenv install
-        working-directory: ./starter/backend
+        uses: VaultVulp/action-pipenv@v2.0.1
+        with:
+          command: install -d # Install all dependencies, including development ones
+        
+      # - name: Run lint
+      #   run: pipenv run lint
+      #   working-directory: ./starter/backend
 
       - name: Run lint
-        run: pipenv run lint
+        run: run lint
         working-directory: ./starter/backend
 
   test-backend:
