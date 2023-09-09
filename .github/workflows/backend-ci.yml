@@ -21,7 +21,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9 # Adjust to your desired Python version
+          python-version: 3.9.13 # Adjust to your desired Python version
 
       - name: Install pipenv
         run: pip3 install pipenv
