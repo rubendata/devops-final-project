@@ -148,13 +148,12 @@ jobs:
 
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --name cluster
+        working-directory: ./starter/backend
 
       - name: Set Docker image in Kustomize
-        run: |
-          cd starter/frontend/k8s
-          kustomize edit set image frontend=338209332218.dkr.ecr.us-east-1.amazonaws.com/backend:latest
+        run: kustomize edit set image backend=338209332218.dkr.ecr.us-east-1.amazonaws.com/backend:latest
+        working-directory: ./starter/backend/k8s
 
       - name: Apply Kubernetes resources
-        run: |
-          cd starter/frontend/k8s
-          kustomize build | kubectl apply -f -
+        run: kustomize build | kubectl apply -f -
+        working-directory: ./starter/backend/k8s
