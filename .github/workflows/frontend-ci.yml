@@ -123,7 +123,7 @@ jobs:
         working-directory: ./starter/frontend
 
       - name: Run init.sh
-        run:  ./init.sh
+        run:  ./init.sh || true
         working-directory: ./setup
 
       - name: Set Docker image in Kustomize
