@@ -21,7 +21,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9.13 # Adjust to your desired Python version
+          python-version: 3.9.13
 
       - name: Install pipenv
         run: pip3 install pipenv
@@ -34,21 +34,21 @@ jobs:
         run: pipenv run lint
         working-directory: ./starter/backend
 
-  # test-backend:
-  #   name: Test
-  #   runs-on: ubuntu-latest
+  test-backend:
+    name: Test
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       
-  #     - name: Install dependencies
-  #       run: pipenv install
-  #       working-directory: ./starter/backend
+      - name: Install dependencies
+        run: pipenv install
+        working-directory: ./starter/backend
 
-  #     - name: Run tests
-  #       run: pipenv run test
-  #       working-directory: ./starter/backend
+      - name: Run tests
+        run: pipenv run test
+        working-directory: ./starter/backend
 
   # build:
   #   name: Build
