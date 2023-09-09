@@ -66,7 +66,7 @@ jobs:
           key: docker-${{ github.sha }}-frontend
           restore-keys: |
             docker-${{ github.sha }}-
-              
+
   push-ecr:
     name: Push ECR
     runs-on: ubuntu-latest
@@ -96,6 +96,9 @@ jobs:
           REPOSITORY: mp-frontend
           IMAGE_TAG: ${{ github.sha }}
         run: |
+          echo "Registry: $REGISTRY"
+          echo "Repository: $REPOSITORY"
+          echo "Image Tag: $IMAGE_TAG"
           docker tag $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
