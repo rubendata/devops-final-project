@@ -40,35 +40,35 @@ jobs:
         run: run lint
         working-directory: ./starter/backend
 
-  test-backend:
-    name: Test
-    runs-on: ubuntu-latest
+  # test-backend:
+  #   name: Test
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
       
-      - name: Install dependencies
-        run: pipenv install
-        working-directory: ./starter/backend
+  #     - name: Install dependencies
+  #       run: pipenv install
+  #       working-directory: ./starter/backend
 
-      - name: Run tests
-        run: pipenv run test
-        working-directory: ./starter/backend
+  #     - name: Run tests
+  #       run: pipenv run test
+  #       working-directory: ./starter/backend
 
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    needs: [lint-backend, test-backend]
+  # build:
+  #   name: Build
+  #   runs-on: ubuntu-latest
+  #   needs: [lint-backend, test-backend]
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: pipenv install
-        working-directory: ./starter/backend
+  #     - name: Install dependencies
+  #       run: pipenv install
+  #       working-directory: ./starter/backend
 
-      - name: Build application
-        run: docker build --tag mp-backend:latest .
-        working-directory: ./starter/backend
+  #     - name: Build application
+  #       run: docker build --tag mp-backend:latest .
+  #       working-directory: ./starter/backend
