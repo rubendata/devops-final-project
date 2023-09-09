@@ -150,6 +150,10 @@ jobs:
         run: aws eks update-kubeconfig --name cluster
         working-directory: ./starter/backend
 
+      - name: Run init.sh
+        run:  ./init.sh
+        working-directory: ./setup
+
       - name: Set Docker image in Kustomize
         run: kustomize edit set image backend=338209332218.dkr.ecr.us-east-1.amazonaws.com/backend:latest
         working-directory: ./starter/backend/k8s
