@@ -22,6 +22,6 @@ pipenv install flake8
 
 export FLASK_ENV=development
 
-pipenv install flask-cors
+(pipenv install flask-cors) # I think it was not needed in the end
 
 pipenv run serve
