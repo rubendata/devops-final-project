@@ -8,6 +8,7 @@ flask = "*"
 uwsgi = "*"
 flask-cors = "*"
 pytest = "*"
+flake8 = "*"
 
 [dev-packages]
 black = "*"
@@ -15,7 +16,7 @@ flake8 = "*"
 coverage = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.9.13"
 
 [scripts]
 serve = "flask --app . run --port 5000 --debug"

@@ -1,0 +1,60 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'starter/backend/**'
+  workflow_dispatch: # This allows running on-demand
+
+jobs:
+  
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./starter/frontend
+
+      - name: Run ESLint
+        run: npm run lint -- --fix
+        working-directory: ./starter/frontend
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install # or yarn install
+        working-directory: ./starter/frontend
+
+      - name: Run tests
+        run: npm test # or yarn test
+        working-directory: ./starter/frontend
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install # or yarn install
+        working-directory: ./starter/frontend
+
+      - name: Build application
+        run: npm run build # or yarn build
+        working-directory: ./starter/frontend
