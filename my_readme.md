@@ -18,6 +18,8 @@ npm run lint -- --fix
 
 
 ## backend folder
+pipenv install flake8
+
 export FLASK_ENV=development
 
 pipenv install flask-cors
