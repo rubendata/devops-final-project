@@ -18,23 +18,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # - name: Setup Python
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: 3.9 # Adjust to your desired Python version
-
-      # - name: Install dependencies
-      #   run: pipenv install
-      #   working-directory: ./starter/backend
-
-      - name: Install Python, pipenv and Pipfile packages
-        uses: palewire/install-python-pipenv-pipfile@v3
+      - name: Setup Python
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.9
-        
-      # - name: Run lint
-      #   run: pipenv run lint
-      #   working-directory: ./starter/backend
+          python-version: 3.9 # Adjust to your desired Python version
+
+      - name: Install pipenv
+        run: pip3 install pipenv
+
+      - name: Install dependencies
+        run: pipenv install
+        working-directory: ./starter/backend
 
       - name: Run lint
         run: pipenv run lint
