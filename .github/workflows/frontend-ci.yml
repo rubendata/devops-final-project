@@ -18,6 +18,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('starter/frontend/package-lock.json') }}
+          restore-keys: |
+            npm-
+
       - name: Install dependencies
         run: npm install
         working-directory: ./starter/frontend
